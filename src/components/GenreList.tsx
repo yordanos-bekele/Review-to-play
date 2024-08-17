@@ -1,8 +1,12 @@
 import { HStack, Image, List, ListItem, Text } from '@chakra-ui/react';
 import useGenre from '../hooks/UseGenre';
+import Loader from './Loader';
 const GenreList = () => {
-const {data} = useGenre();
+const {data,isLoading} = useGenre();
+
+  if (isLoading) return <Loader/>
   return (
+    
     <List>
         {data.map(genre=>(
             <ListItem key={genre.id} paddingY={2}>
@@ -13,6 +17,7 @@ const {data} = useGenre();
             </ListItem>
         ))}
     </List>
+    
   )
 }
 
