@@ -1,7 +1,8 @@
 import useData from "./useData";
 import gameProps from "../interfaces/Games";
-const useGame = ()=>{
-    const {data,error} = useData<gameProps>("/games");
+import genre from "../interfaces/Genre";
+const useGame = (selectedGenre:genre | null)=>{
+    const {data,error} = useData<gameProps>("/games", {params : {genres: selectedGenre?.id}}, [selectedGenre?.id] );
     return {data,error};
 }
 
