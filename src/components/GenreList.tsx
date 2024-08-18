@@ -5,8 +5,9 @@ import genre from '../interfaces/Genre';
 import getCroppedImageUrl from '../services/image-url';
 interface Props{
   handleGenre: (Genre:genre)=> void
+  selectedGenre: genre | null
 }
-const GenreList = ({handleGenre}: Props) => {
+const GenreList = ({handleGenre, selectedGenre}: Props) => {
 const {data,isLoading} = useGenre();
   if (isLoading) return <Loader/>
   return (
@@ -16,7 +17,7 @@ const {data,isLoading} = useGenre();
             <ListItem key={genre.id} paddingY={2}>
               <HStack>
                 <Image src={getCroppedImageUrl(genre.image_background)} boxSize='32px' borderRadius={3}/>
-                <Button fontSize={'lg'} variant={'link'} className='hover:translate-x-2' onClick={()=>handleGenre(genre)}>{genre.name}</Button>
+                <Button fontWeight={genre.id === selectedGenre?.id ? 'bold' : 'normal'} fontSize={'lg'} variant={'link'} className='hover:translate-x-2' onClick={()=>handleGenre(genre)}>{genre.name}</Button>
               </HStack>
             </ListItem>
         ))}
