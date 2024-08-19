@@ -3,11 +3,13 @@ import GameCard from './GameCard';
 import GameCardContainer from './GameCardContainer';
 import useGame from '../hooks/UseGame';
 import genre from '../interfaces/Genre';
+import platForms from '../interfaces/PlateForm';
 interface Props{
-    selectedGenre : genre | null
+    selectedGenre : genre | null,
+    selectedPlatform: platForms | null
 }
-function GameGrid({selectedGenre}:Props) {
-    const {data,error} = useGame(selectedGenre);
+function GameGrid({selectedGenre, selectedPlatform}:Props) {
+    const {data,error} = useGame(selectedGenre, selectedPlatform);
   return (
         <>
             {error && <Text>{error}</Text>}

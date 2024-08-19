@@ -1,8 +1,11 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react'
 import { BsCaretDownFill } from 'react-icons/bs'
 import usePlatForm from '../hooks/usePlatforms'
-
-function PlatFormSeletector() {
+import platForms from '../interfaces/PlateForm';
+interface Props {
+  handlePlatform : (platform: platForms)=>void
+}
+function PlatFormSeletector({handlePlatform}:Props) {
     const {data} = usePlatForm();
   return (
     <div className='my-5'>
@@ -12,7 +15,7 @@ function PlatFormSeletector() {
         </MenuButton>
         <MenuList>
             {data.map(platform=>(
-                <MenuItem key={platform.id}>
+                <MenuItem key={platform.id} onClick={()=>handlePlatform(platform)}>
                     {platform.name}
                 </MenuItem>
             ))}
