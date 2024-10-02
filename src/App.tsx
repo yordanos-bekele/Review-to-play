@@ -30,7 +30,7 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <Navbar />
+        <Navbar onSearch={(search) => setGameQuery({ ...gameQuery, search })} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" paddingX={6}>
@@ -41,9 +41,6 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <SearchTab
-          handleSearching={(search) => setGameQuery({ ...gameQuery, search })}
-        />
         <HStack marginEnd={5}>
           <PlatFormSeletector
             handlePlatform={(platform) =>

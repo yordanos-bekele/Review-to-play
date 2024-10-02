@@ -1,26 +1,28 @@
-import { Input, InputGroup, InputRightElement, Button } from "@chakra-ui/react";
-import { useState } from "react";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { useRef } from "react";
 import { MdSearch } from "react-icons/md";
 interface Props {
-  handleSearching: (search: String) => void;
+  onSearch: (search: String) => void;
 }
-const SearchTab = ({ handleSearching }: Props) => {
-  const [search, setSearch] = useState("");
+const SearchTab = ({ onSearch }: Props) => {
+  const ref = useRef<HTMLInputElement>(null);
   return (
-    <InputGroup className="w-56">
-      <Input
-        type="text"
-        onChange={(event) => setSearch(event.target?.value)}
-        variant="filled"
-        placeholder="Search games"
-      />
-      <InputRightElement>
-        <Button
-          onClick={() => handleSearching(search)}
-          rightIcon={<MdSearch />}
-        ></Button>
-      </InputRightElement>
-    </InputGroup>
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        if (ref.current) onSearch(ref.current.value);
+      }}
+    >
+      <InputGroup className="w-56">
+        <InputLeftElement children={<MdSearch />}></InputLeftElement>
+        <Input
+          ref={ref}
+          type="text"
+          variant="filled"
+          placeholder="Search games..."
+        />
+      </InputGroup>
+    </form>
   );
 };
 
