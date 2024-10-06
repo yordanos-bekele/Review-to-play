@@ -4,3 +4,7 @@
 form {
     width: 50%;
 }
+h1 {
+    font-weight: bolder;
+    font-size: larger;
+}

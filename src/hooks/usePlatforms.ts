@@ -1,7 +1,7 @@
-import useData from "./useData";
-import platForms from "../interfaces/PlateForm";
+import platform from "../data/platform"
+
 const usePlatForm = ()=>{
-    const {data,error} = useData<platForms>('/platforms/lists/parents')
+    const {data,error} = {data : platform, error : null}
     return {data, error}
 }
 export default usePlatForm
